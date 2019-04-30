@@ -18,15 +18,28 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    // @GetMapping("/register")
+    // public String register(String name, String password) {
+    // User user = new User();
+    // user.name = name;
+    // user.password = password;
+    // if (userRepository.save(user) != null) {
+    // return "success";
+    // }
+    // return "error";
+    // }
     @GetMapping("/register")
-    public String register(String name, String password) {
-        User user = new User();
-        user.name = name;
-        user.password = password;
-        if (userRepository.save(user) != null) {
-            return "success";
+    public Response<User> register(String name, String password) {
+        Response<User> response = new Response<>();
+        response.body.name = name;
+        response.body.password = password;
+        if (userRepository.save(response.body) == null) {
+            response.status = 1314;
+            response.msg = "create fail";
         }
-        return "error";
+
+        return response;
+
     }
 
     @GetMapping("/login")
