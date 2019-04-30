@@ -31,13 +31,13 @@ public class UserController {
     @GetMapping("/register")
     public Response<User> register(String name, String password) {
         Response<User> response = new Response<>();
+        response.body = new User();
         response.body.name = name;
         response.body.password = password;
         if (userRepository.save(response.body) == null) {
-            response.status = 1314;
+            response.status = 400;
             response.msg = "create fail";
         }
-
         return response;
 
     }

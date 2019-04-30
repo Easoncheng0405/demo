@@ -1,9 +1,8 @@
 package com.jlu.xudong.demo.repository;
 
-import java.util.Date;
 import java.util.List;
-
 import com.jlu.xudong.demo.model.Income;
+
 import com.jlu.xudong.demo.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +14,4 @@ public interface IncomeRepository extends JpaRepository<Income, Integer> {
 
     List<Income> findByUser(User user);
 
-    Income findByIncomeTypeAndCashAndDateIncome(String incomeType, double cash, Date dateIncome);
 }

@@ -36,9 +36,12 @@ public class OutcomeController {
 
     @GetMapping("/saveOutCome")
     public Outcome save(int id, String type, double cash) {
+
         User user = userRepository.findById(id).get();
+
         if (user == null)
             return null;
+
         Outcome outcome = new Outcome();
         outcome.cash = cash;
         outcome.outcomeType = type;
