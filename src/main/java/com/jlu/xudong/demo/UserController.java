@@ -52,4 +52,34 @@ public class UserController {
         }
         return response;
     }
+
+    @GetMapping("/findIDByName")
+    public int findIdByName(String name) {
+        User user = new User();
+        user = userRepository.findByName(name);
+        return user.id;
+    }
+
+    @GetMapping("/deleteuser")
+    public Response<User> delete(int id) {
+        Response<User> response = new Response<>();
+        userRepository.deleteById(id);
+        if (userRepository.findById(id).get() == null) {
+            response.status = 200;
+            response.msg = "user delete";
+        }
+        return response;
+    }
+
+    @GetMapping("/updatapassword")
+    public Response<User> updataPassword(int id, String password) {
+        Response<User> response = new Response<>();
+        response.body = userRepository.findById(id).get();
+        response.body.password = password;
+        if (userRepository.save(response.body) != null) {
+            response.status = 200;
+            response.msg = "success";
+        }
+        return response;
+    }
 }
