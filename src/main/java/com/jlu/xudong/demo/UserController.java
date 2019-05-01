@@ -61,13 +61,10 @@ public class UserController {
     }
 
     @GetMapping("/deleteuser")
-    public Response<User> delete(int id) {
-        Response<User> response = new Response<>();
+    public Response<Void> delete(int id) {
+        Response<Void> response = new Response<>();
         userRepository.deleteById(id);
-        if (userRepository.findById(id).get() == null) {
-            response.status = 200;
-            response.msg = "user delete";
-        }
+
         return response;
     }
 

@@ -7,13 +7,11 @@ import com.jlu.xudong.demo.repository.IncomeRepository;
 import com.jlu.xudong.demo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.StreamingHttpOutputMessage.Body;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder.In;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -96,7 +94,7 @@ public class IncomeController {
         return response;
     }
 
-    @GetMapping("updataIncometype")
+    @GetMapping("/updataIncometype")
     public Response<Income> updataIncometype(int id, String type) {
         Response<Income> response = new Response<>();
         response.body = incomeRepository.findById(id).get();
