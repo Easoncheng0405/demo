@@ -63,8 +63,10 @@ public class IncomeController {
         User user = new User();
         user = userRepository.findById(id).get();
 
-        if (user == null)
-            return null;
+        if (user == null) {
+            response.status = 404;
+            return response;
+        }
 
         response.body = new Income();
         response.body.cash = cash;
@@ -94,40 +96,13 @@ public class IncomeController {
         return response;
     }
 
-    @GetMapping("/updataIncometype")
-    public Response<Income> updataIncometype(int id, String type) {
-        Response<Income> response = new Response<>();
-        response.body = incomeRepository.findById(id).get();
-        response.body.incomeType = type;
-        if (incomeRepository.save(response.body) != null) {
-            response.status = 200;
-            response.msg = "success";
-        }
-        return response;
-    }
-
-    @GetMapping("/updataIncomecash")
-    public Response<Income> updataIncomecash(int id, double cash) {
-        Response<Income> response = new Response<>();
-        response.body = incomeRepository.findById(id).get();
-        response.body.cash = cash;
-        if (incomeRepository.save(response.body) != null) {
-            response.status = 200;
-            response.msg = "success";
-        }
-        return response;
-    }
-
     @GetMapping("/updataIncome")
     public Response<Income> updataIncome(int id, String type, double cash) {
         Response<Income> response = new Response<>();
         response.body = incomeRepository.findById(id).get();
         response.body.cash = cash;
         response.body.incomeType = type;
-        if (incomeRepository.save(response.body) != null) {
-            response.status = 200;
-            response.msg = "success";
-        }
+        incomeRepository.save(response.body);
         return response;
     }
 

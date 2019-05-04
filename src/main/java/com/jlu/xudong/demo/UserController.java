@@ -54,10 +54,11 @@ public class UserController {
     }
 
     @GetMapping("/findIDByName")
-    public int findIdByName(String name) {
-        User user = new User();
-        user = userRepository.findByName(name);
-        return user.id;
+    public Response<User> findIdByName(String name) {
+        Response<User> response = new Response<>();
+        response.body = new User();
+        response.body = userRepository.findByName(name);
+        return response;
     }
 
     @GetMapping("/deleteuser")
