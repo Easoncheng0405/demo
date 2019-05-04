@@ -14,6 +14,4 @@ public interface DealRepository extends JpaRepository<Deal, Integer> {
 
     List<Deal> findByUser(User user);
 
-    // Income findIncomeByUser(User user);
-
 }

@@ -51,7 +51,7 @@ public class DealController {
     }
 
     @GetMapping("/dealSaveIncome")
-    public Response<Deal> save(String type, double cash, int id) {
+    public Response<Deal> save(String type, double cash, int id, boolean mark) {
         Response<Deal> response = new Response<>();
         User user = new User();
         user = userRepository.findById(id).get();
@@ -66,6 +66,7 @@ public class DealController {
         response.body.type = type;
         response.body.date = new Date();
         response.body.user = user;
+        response.body.mark = true;
 
         response.body = dealRepository.save(response.body);
         return response;
@@ -120,7 +121,7 @@ public class DealController {
     }
 
     @GetMapping("/dealSaveOutCome")
-    public Response<Deal> save(int id, String type, double cash) {
+    public Response<Deal> save(int id, String type, double cash, boolean mark) {
         Response<Deal> response = new Response<>();
         User user = userRepository.findById(id).get();
 
@@ -132,13 +133,13 @@ public class DealController {
         response.body.type = type;
         response.body.date = new Date();
         response.body.user = user;
-
+        response.body.mark = false;
         response.body = dealRepository.save(response.body);
 
         return response;
     }
 
-    @GetMapping("/sealSelectAllOutcome")
+    @GetMapping("/dealSelectAllOutcome")
     public Response<Void> delectAllOutcome(int id) {
         Response<Void> response = new Response<>();
         User user = userRepository.findById(id).get();
