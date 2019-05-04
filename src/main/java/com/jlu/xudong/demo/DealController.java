@@ -83,7 +83,7 @@ public class DealController {
         return response;
     }
 
-    @GetMapping("/dealDeleteselect")
+    @GetMapping("/dealDeleteSelect")
     public Response<Void> deleteSelect(int id) {
         Response<Void> response = new Response<>();
         dealRepository.deleteById(id);
