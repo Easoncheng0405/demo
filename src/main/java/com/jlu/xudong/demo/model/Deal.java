@@ -9,16 +9,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.GenerationType;
 
 @Entity
-public class Income {
+public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
-    public String incomeType;
+    public String type;
 
     public double cash;
 
-    public Date dateIncome;
+    public boolean mark;
+
+    public Date date;
 
     @OneToOne
     public User user;

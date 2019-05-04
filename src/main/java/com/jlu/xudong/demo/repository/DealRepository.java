@@ -1,7 +1,7 @@
 package com.jlu.xudong.demo.repository;
 
 import java.util.List;
-import com.jlu.xudong.demo.model.Income;
+import com.jlu.xudong.demo.model.Deal;
 
 import com.jlu.xudong.demo.model.User;
 
@@ -10,10 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface IncomeRepository extends JpaRepository<Income, Integer> {
+public interface DealRepository extends JpaRepository<Deal, Integer> {
 
-    List<Income> findByUser(User user);
-
-    // Income findIncomeByUser(User user);
+    List<Deal> findByUser(User user);
 
 }
