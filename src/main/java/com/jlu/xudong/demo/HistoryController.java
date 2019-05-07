@@ -29,30 +29,31 @@ public class HistoryController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/historySave")
+    // @GetMapping("/historySave")
 
-    public Response<History> save(String type, double cash, int id, boolean mark, int aid, String form) {
-        Response<History> response = new Response<>();
-        User user = new User();
-        user = userRepository.findById(id).get();
+    // public Response<History> save(String type, double cash, int uid, boolean
+    // mark, int aid, String form) {
+    // Response<History> response = new Response<>();
+    // User user = new User();
+    // user = userRepository.findById(uid).get();
 
-        if (user == null) {
-            response.status = 404;
-            return response;
-        }
+    // if (user == null) {
+    // response.status = 404;
+    // return response;
+    // }
 
-        response.body = new History();
-        response.body.cash = cash;
-        response.body.type = type;
-        response.body.date = new Date();
-        response.body.user = user;
-        response.body.mark = mark;
-        response.body.id = aid; // 进行操作的记录的id
-        response.body.form = form; // 删除，修改两种字段
+    // response.body = new History();
+    // response.body.cash = cash;
+    // response.body.type = type;
+    // response.body.date = new Date();
+    // response.body.user = user;
+    // response.body.mark = mark;
+    // response.body.id = aid; // 进行操作的记录的id
+    // response.body.form = form; // 删除，修改两种字段
 
-        response.body = historyRepository.save(response.body);
-        return response;
-    }
+    // response.body = historyRepository.save(response.body);
+    // return response;
+    // }
 
     @GetMapping("/historyShowAll")
     public Response<List<History>> showAll(int id) { // 用户id
