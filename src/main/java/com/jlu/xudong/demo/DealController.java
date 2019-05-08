@@ -121,7 +121,7 @@ public class DealController {
     public Response<Deal> updata(int id, String type, double cash) {
         Response<Deal> response = new Response<>();
         Response<History> responseHistory = new Response<>();
-        response.body = new Deal();
+        // response.body = new Deal();
         response.body = dealRepository.findById(id).get();
         responseHistory.body = new History();
         responseHistory.body.cash = response.body.cash;
@@ -132,9 +132,24 @@ public class DealController {
         responseHistory.body.mark = response.body.mark;
         responseHistory.body.form = "修改";
         historyRepository.save(responseHistory.body);
+
         response.body.cash = cash;
         response.body.type = type;
         dealRepository.save(response.body);
         return response;
+    }
+
+    @GetMapping("/historyrestore")
+    public Response<Deal> historyUpdata(int id, String type, double cash) {
+
+        Response<Deal> responseDeal = new Response<>();
+
+        responseDeal.body = dealRepository.findById(id).get();
+
+        responseDeal.body.cash = cash;
+        responseDeal.body.type = type;
+        dealRepository.save(responseDeal.body);
+
+        return responseDeal;
     }
 }
