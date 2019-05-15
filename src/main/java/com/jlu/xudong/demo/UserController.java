@@ -31,6 +31,13 @@ public class UserController {
     @GetMapping("/register")
     public Response<User> register(String name, String password) {
         Response<User> response = new Response<>();
+        response.body = userRepository.findByName(name);
+        if (response.body != null) {
+            response.status = 404;
+            response.msg = "user is exist";
+            return response;
+        }
+
         response.body = new User();
         response.body.name = name;
         response.body.password = password;
