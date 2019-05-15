@@ -35,7 +35,7 @@ public class UserController {
         if (response.body != null) {
             response.status = 404;
             response.msg = "user is exist";
-            return response;
+            return null;
         }
 
         response.body = new User();
