@@ -33,7 +33,7 @@ public class UserController {
         Response<User> response = new Response<>();
         response.body = userRepository.findByName(name);
         if (response.body != null) {
-            response.status = 404;
+            response.status = 400;
             response.msg = "user is exist";
             return null;
         }
