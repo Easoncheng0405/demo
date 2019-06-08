@@ -18,6 +18,8 @@ public class History {
 
     public String type;
 
+    public String typeDetail;
+
     public double cash;
 
     public boolean mark;

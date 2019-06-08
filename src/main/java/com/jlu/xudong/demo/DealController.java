@@ -56,7 +56,7 @@ public class DealController {
     }
 
     @GetMapping("/dealSave")
-    public Response<Deal> save(String type, double cash, int id, boolean mark) {
+    public Response<Deal> save(String type, double cash, int id, boolean mark, String typeDetail) {
         Response<Deal> response = new Response<>();
         User user = new User();
         user = userRepository.findById(id).get();
@@ -69,6 +69,7 @@ public class DealController {
         response.body = new Deal();
         response.body.cash = cash;
         response.body.type = type;
+        response.body.typeDetail = typeDetail;
         response.body.date = new Date();
         response.body.user = user;
         response.body.mark = mark;
@@ -93,6 +94,7 @@ public class DealController {
             responseHistory.body.form = "删除";
             responseHistory.body.mark = i.mark;
             responseHistory.body.type = i.type;
+            responseHistory.body.typeDetail = i.typeDetail;
             historyRepository.save(responseHistory.body);
             dealRepository.delete(i);
         }
@@ -112,13 +114,14 @@ public class DealController {
         responseHistory.body.form = "删除";
         responseHistory.body.mark = deal.mark;
         responseHistory.body.type = deal.type;
+        responseHistory.body.typeDetail = deal.typeDetail;
         historyRepository.save(responseHistory.body);
         dealRepository.delete(deal);
         return response;
     }
 
     @GetMapping("/dealUpdata")
-    public Response<Deal> updata(int id, String type, double cash) {
+    public Response<Deal> updata(int id, String type, double cash, String typeDetail) {
         Response<Deal> response = new Response<>();
         Response<History> responseHistory = new Response<>();
         // response.body = new Deal();
@@ -128,6 +131,7 @@ public class DealController {
         responseHistory.body.date = response.body.date;
         responseHistory.body.user = response.body.user;
         responseHistory.body.type = response.body.type;
+        responseHistory.body.typeDetail = response.body.typeDetail;
         responseHistory.body.hKey = response.body.id;
         responseHistory.body.mark = response.body.mark;
         responseHistory.body.form = "修改";
@@ -140,7 +144,7 @@ public class DealController {
     }
 
     @GetMapping("/historyrestore")
-    public Response<Deal> historyUpdata(int id, String type, double cash) {
+    public Response<Deal> historyUpdata(int id, String type, double cash, String typeDetail) {
 
         Response<Deal> responseDeal = new Response<>();
 
@@ -148,6 +152,7 @@ public class DealController {
 
         responseDeal.body.cash = cash;
         responseDeal.body.type = type;
+        responseDeal.body.typeDetail = typeDetail;
         dealRepository.save(responseDeal.body);
 
         return responseDeal;
